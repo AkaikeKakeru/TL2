@@ -1,6 +1,14 @@
 #include <cstdio>
 #include <cstdlib>
 
+//コマンドライン
+enum Argument {
+	kApplicationPath_,	//アプリケーションのパス
+	kFilePath,			//渡されたファイルのパス
+
+	NumArgument_
+};
+
 int main(int argc, char* argv[]) {
 	//argcの数だけ繰り返す
 	for (int i = 0; i < argc; i++) {
@@ -8,7 +16,7 @@ int main(int argc, char* argv[]) {
 		printf(argv[i]);
 		printf("\n");
 	}
-
+	
 	system("pause");
 	return 0;
 }
