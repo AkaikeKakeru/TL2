@@ -5,40 +5,40 @@
 
 #include "TextureConverter.h"
 
-//ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“
+//ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³
 enum Argument {
-	kApplicationPath_,	//ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒpƒX
-	kFilePath,			//“n‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ÌƒpƒX
+	kApplicationPath_,	//ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ‘ã‚¹
+	kFilePath,			//æ¸¡ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
 
 	NumArgument_
 };
 
 int main(int argc, char* argv[]) {
-	/*
-		//argc‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
-		for (int i = 0; i < argc; i++) {
-			//•¶š—ñargv‚Ìi”Ô‚ğ•\¦
-			printf(argv[i]);
-			printf("\n");
-		}
-	*/
+
+	//argcã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
+	for (int i = 0; i < argc; i++) {
+		//æ–‡å­—åˆ—argvã®iç•ªã‚’è¡¨ç¤º
+		printf(argv[i]);
+		printf("\n");
+	}
+
 
 	assert(argc >= NumArgument_);
 
-	//COM ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+	//COM ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
 	HRESULT hr =
 		CoInitializeEx(
 			nullptr,
 			COINIT_MULTITHREADED);
 	assert(SUCCEEDED(hr));
 
-	//ƒeƒNƒXƒ`ƒƒƒRƒ“ƒo[ƒ^
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚³ãƒ³ãƒãƒ¼ã‚¿
 	TextureConverter converter;
 
-	//ƒeƒNƒXƒ`ƒƒ•ÏŠ·
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£å¤‰æ›
 	converter.ConvertTextureWICToDDS(argv[kFilePath]);
 
-	//COM ƒ‰ƒCƒuƒ‰ƒŠ‚ÌI—¹
+	//COM ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®çµ‚äº†
 	CoUninitialize();
 
 	system("pause");
