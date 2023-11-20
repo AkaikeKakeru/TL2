@@ -1,27 +1,27 @@
-/*ƒeƒNƒXƒ`ƒƒƒRƒ“ƒo[ƒ^*/
+/*ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚³ãƒ³ãƒãƒ¼ã‚¿*/
 #pragma once
 #include <string>
 
-//ƒeƒNƒXƒ`ƒƒƒRƒ“ƒo[ƒ^
+//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚³ãƒ³ãƒãƒ¼ã‚¿
 class TextureConverter {
 public:
 	/// <summary>
-	/// ƒeƒNƒXƒ`ƒƒ‚ðWIC‚©‚çDDS‚É•ÏŠ·
+	/// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’WICã‹ã‚‰DDSã«å¤‰æ›
 	/// </summary>
-	/// <param name="filePath">ƒtƒ@ƒCƒ‹ƒpƒX</param>
+	/// <param name="filePath">ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
 	void ConvertTextureWICToDDS(const std::string& filePath);
 
 private:
 	/// <summary>
-	/// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹“Çž
+	/// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼
 	/// </summary>
-	/// <param name="filePath">ƒtƒ@ƒCƒ‹ƒpƒX</param>
+	/// <param name="filePath">ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
 	void LoadWICTextureFromFile(const std::string& filePath);
 
 	/// <summary>
-	/// ƒ}ƒ‹ƒ`ƒoƒCƒg•¶Žš—ñ‚ðƒƒCƒh•¶Žš—ñ‚É•ÏŠ·
+	/// ãƒžãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã‚’ãƒ¯ã‚¤ãƒ‰æ–‡å­—åˆ—ã«å¤‰æ›
 	/// </summary>
-	/// <param name="mString">ƒ}ƒ‹ƒ`ƒoƒCƒg•¶Žš—ñ</param>
-	/// <returns>ƒƒCƒh•¶Žš—ñ</returns>
+	/// <param name="mString">ãƒžãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—</param>
+	/// <returns>ãƒ¯ã‚¤ãƒ‰æ–‡å­—åˆ—</returns>
 	static std::wstring ConvertMultiByteStringToWideString(const std::string& mString);
 };

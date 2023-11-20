@@ -1,30 +1,32 @@
 #include "TextureConverter.h"
-#include <stringapiset.h>
 
+#include <Windows.h>
 
 void TextureConverter::ConvertTextureWICToDDS(const std::string& filePath) {
-	//‡@ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
-	//LoadWICTextureFromFile
+	//â‘ ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
+	LoadWICTextureFromFile(filePath);
 
-	//‡ADDSŒ`®‚É•ÏŠ·‚µ‚Ä‘‚«‚Ş
+	//â‘¡DDSå½¢å¼ã«å¤‰æ›ã—ã¦æ›¸ãã ã™
 }
 
 void TextureConverter::LoadWICTextureFromFile(const std::string& filePath) {
-	//‡@ƒtƒ@ƒCƒ‹ƒpƒX‚ğƒƒCƒh•¶š—ñ‚É•ÏŠ·
-	//‡AƒeƒNƒXƒ`ƒƒ‚ğ“Ç‚İ‚Ş
+	//â‘ ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ãƒ¯ã‚¤ãƒ‰æ–‡å­—åˆ—ã«å¤‰æ›
+	std::wstring wfilePath = ConvertMultiByteStringToWideString(filePath);
+
+	//â‘¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’èª­ã¿è¾¼ã‚€
 }
 
 std::wstring TextureConverter::ConvertMultiByteStringToWideString(const std::string& mString) {
-	//ƒƒCƒh•¶š—ñ‚É•ÏŠ·‚µ‚½Û‚Ì•¶š”
+	//ãƒ¯ã‚¤ãƒ‰æ–‡å­—åˆ—ã«å¤‰æ›ã—ãŸéš›ã®æ–‡å­—æ•°
 	int bufferSize = 
 		MultiByteToWideChar(CP_UTF8, 0, mString.c_str(), -1, nullptr, 0);
 
-	//ƒƒCƒh•¶š—ñ
+	//ãƒ¯ã‚¤ãƒ‰æ–‡å­—åˆ—
 	std::wstring wString;
 	wString.resize(bufferSize);
 
-	//•ÏŠ·‚·‚é
-	MultiByteToWideChar(CP_ACP, 0, mString.c_str(), -1, &wString[0], bufferSize);
+	//å¤‰æ›ã™ã‚‹
+	MultiByteToWideChar(CP_UTF8, 0, mString.c_str(), -1, &wString[0], bufferSize);
 
-	return std::wstring();
+	return wString;
 }
