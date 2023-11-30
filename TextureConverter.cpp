@@ -4,10 +4,11 @@ using namespace DirectX;
 
 void TextureConverter::ConvertTextureWICToDDS(
 	const std::string& filePath) {
-	//①テクスチャファイルを読み込む
+	//テクスチャファイルを読み込む
 	LoadWICTextureFromFile(filePath);
 
-	//②DDS形式に変換して書きだす
+	//DDS形式に変換して書きだす
+	SaveDDSTextureToFile();
 }
 
 void TextureConverter::LoadWICTextureFromFile(
@@ -100,4 +101,24 @@ void TextureConverter::SeparateFilePath(
 	//区切り文字がないので、ファイル名のみとして扱う
 	directoryPath_ = L"";
 	fileName_ = exceptExt;
+}
+
+void TextureConverter::SaveDDSTextureToFile() {
+	HRESULT result;
+
+	//読みこんだテクスチャをSRGBとして扱う
+	metadata_.format = MakeSRGB(metadata_.format);
+
+	//出力ファイルを指定する
+	std::wstring filePath = directoryPath_ + fileName_ + L".dds";
+
+	//DDSファイル書き出し
+	result = SaveToDDSFile(
+		scratchImage_.GetImages(),
+		scratchImage_.GetImageCount(),
+		metadata_,
+		DDS_FLAGS_NONE,
+		filePath.c_str());
+
+	assert(SUCCEEDED(result));
 }
