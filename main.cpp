@@ -14,15 +14,12 @@ enum Argument {
 };
 
 int main(int argc, char* argv[]) {
-
-	//argcの数だけ繰り返す
-	for (int i = 0; i < argc; i++) {
-		//文字列argvのi番を表示
-		printf(argv[i]);
-		printf("\n");
+	//コマンドライン引数指定なし
+	if (argc < NumArgument_) {
+		//使い方を表示
+		TextureConverter::OutputUsage();
+		return 0;
 	}
-
-	assert(argc >= NumArgument_);
 
 	//COM ライブラリの初期化
 	HRESULT hr =
