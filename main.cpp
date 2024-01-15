@@ -22,7 +22,6 @@ int main(int argc, char* argv[]) {
 		printf("\n");
 	}
 
-
 	assert(argc >= NumArgument_);
 
 	//COM ライブラリの初期化
@@ -41,6 +40,5 @@ int main(int argc, char* argv[]) {
 	//COM ライブラリの終了
 	CoUninitialize();
 
-	system("pause");
 	return 0;
 }
