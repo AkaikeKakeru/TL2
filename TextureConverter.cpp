@@ -11,6 +11,16 @@ void TextureConverter::ConvertTextureWICToDDS(
 	SaveDDSTextureToFile();
 }
 
+void TextureConverter::OutputUsage() {
+	printf("画像ファイルをWIC形式からDDS形式に変換します。\n");
+	printf("\n"); //空白行
+
+	printf("TextureConverter [ドライブ:][パス］[ファイル名]\n");
+	printf("\n"); //空白行
+
+	printf("[ドライブ:][パス］[ファイル名]: 変換したいWIC形式の画像ファイルを指定します");
+}
+
 void TextureConverter::LoadWICTextureFromFile(
 	const std::string& filePath) {
 	HRESULT result;
