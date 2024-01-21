@@ -21,6 +21,9 @@ void TextureConverter::OutputUsage() {
 	printf("\n"); //空白行
 
 	printf("[ドライブ:][パス］[ファイル名]: 変換したいWIC形式の画像ファイルを指定します");
+	printf("\n"); //空白行
+
+	printf("[-ml level]: ミップマップを指定します。0を指定すると1x1までのフルミップマップチェーンを生成します。");
 }
 
 void TextureConverter::LoadWICTextureFromFile(
@@ -120,6 +123,19 @@ void TextureConverter::SaveDDSTextureToFile(
 	char* options[]) {
 	HRESULT result;
 
+#pragma region mipLevel
+	size_t mipLevel = 0;
+
+	//ミップマップレベル指定を検索
+	for (int i = 0; i < numOptions; i++) {
+		if (std::string(options[i]) == "-ml") {
+			//ミップレベル指定
+			mipLevel = std::stoi(options[i + 1]);
+			break;
+		}
+	}
+#pragma endregion 
+
 #pragma region mipmap
 	ScratchImage mipChain;
 	//ミップマップ生成
@@ -128,7 +144,7 @@ void TextureConverter::SaveDDSTextureToFile(
 		scratchImage_.GetImageCount(),
 		scratchImage_.GetMetadata(),
 		TEX_FILTER_DEFAULT,
-		0,
+		mipLevel,
 		mipChain);
 	if (SUCCEEDED(result)) {
 		//イメージデータとメタデータを、ミップマップ版で置き換える
@@ -136,6 +152,7 @@ void TextureConverter::SaveDDSTextureToFile(
 		metadata_ = scratchImage_.GetMetadata();
 	}
 #pragma endregion
+
 #pragma region compress
 	//圧縮形式に変換
 	ScratchImage converted;
