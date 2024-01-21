@@ -8,12 +8,14 @@
 //コマンドライン
 enum Argument {
 	kApplicationPath_,	//アプリケーションのパス
-	kFilePath,			//渡されたファイルのパス
+	kFilePath_,			//渡されたファイルのパス
 
 	NumArgument_
 };
 
-int main(int argc, char* argv[]) {
+int main(
+	int argc,
+	char* argv[]) {
 	//コマンドライン引数指定なし
 	if (argc < NumArgument_) {
 		//使い方を表示
@@ -31,8 +33,17 @@ int main(int argc, char* argv[]) {
 	//テクスチャコンバータ
 	TextureConverter converter;
 
+	//オプションの数
+	int numOptions = argc - NumArgument_;
+
+	//オプション配列 (ダブルポインタ)
+	char** options = argv + NumArgument_;
+
 	//テクスチャ変換
-	converter.ConvertTextureWICToDDS(argv[kFilePath]);
+	converter.ConvertTextureWICToDDS(
+		argv[kFilePath_],
+		numOptions,
+		options);
 
 	//COM ライブラリの終了
 	CoUninitialize();
